@@ -1,20 +1,50 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
+main() {
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+    return MaterialApp(
+        home: Scaffold(
+      backgroundColor: Colors.blueGrey,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "0",
+              style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            const TextField(
+              decoration: InputDecoration(
+                  prefixIcon:
+                      Icon(Icons.monetization_on_outlined, color: Colors.black),
+                  hintText: "Enter Amount in INR",
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(width: 20, color: Colors.black))),
+            ),
+            ElevatedButton(
+              onPressed: () => {},
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black)),
+              child: const Text(
+                "Convert",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
+          ],
         ),
       ),
-    );
+    ));
   }
 }
