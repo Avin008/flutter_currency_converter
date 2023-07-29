@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
 main() {
-  runApp(const MyApp());
+  runApp(const MyAppState());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyAppState extends StatefulWidget {
+  const MyAppState({super.key});
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppPage();
+  }
+}
+
+class _MyAppPage extends State {
+  TextEditingController textEditingController = TextEditingController();
+  double result = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +31,20 @@ class MyApp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "0",
-              style: TextStyle(
+            Text(
+              "INR ${result.toStringAsFixed(2)}",
+              style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: Colors.white60),
             ),
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: const TextField(
-                keyboardType: TextInputType.numberWithOptions(
+              child: TextField(
+                controller: textEditingController,
+                keyboardType: const TextInputType.numberWithOptions(
                     decimal: true, signed: true),
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                     focusedBorder: OutlineInputBorder(
@@ -57,7 +67,10 @@ class MyApp extends StatelessWidget {
                       shadowColor: Colors.black,
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)))),
-                  onPressed: () => {},
+                  onPressed: () => {
+                        result = double.parse(textEditingController.text) * 82,
+                        setState(() {})
+                      },
                   child: const Text("Convert")),
             )
           ],
